@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>광탄사(KWANGTANSA) - 혁신적인 이동형 광고 플랫폼</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+        
+        :root {
+            --primary: #3B82F6;
+            --primary-dark: #2563EB;
+            --secondary: #10B981;
+            --dark: #1E293B;
+            --light: #F8FAFC;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            scroll-behavior: smooth;
+        }
+        
+        .font-poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #3B82F6 0%, #10B981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(90deg, #3B82F6 0%, #10B981 100%);
+        }
+        
+        .gradient-border {
+            position: relative;
+            border-radius: 0.5rem;
+        }
+        
+        .gradient-border::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 0.5rem;
+            padding: 2px;
+            background: linear-gradient(90deg, #3B82F6 0%, #10B981 100%);
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .glass-dark {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .hero-blob {
+            position: absolute;
+            width: 60%;
+            height: 100%;
+            top: 0;
+            right: -15%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, rgba(16, 185, 129, 0.2) 50%, rgba(255, 255, 255, 0) 70%);
+            filter: blur(50px);
+            border-radius: 50%;
+            z-index: 0;
+            animation: blob-move 20s infinite alternate ease-in-out;
+        }
+        
+        @keyframes blob-move {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-5%, 5%) scale(1.05); }
+            100% { transform: translate(5%, -5%) scale(0.95); }
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(90deg, #3B82F6 0%, #10B981 100%);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        
+        .clipped-image {
+            -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
+        }
+        
+        .feature-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .feature-card:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(59, 130, 246, 0.5);
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- 내비게이션 바 -->
+    <nav class="fixed w-full z-50 glass-dark text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <span class="text-2xl font-bold font-poppins text-white">광탄사</span>
+                        <span class="ml-2 text-sm text-gray-300 tracking-widest font-poppins">KWANGTANSA</span>
+                    </div>
+                    <div class="hidden md:ml-10 md:flex space-x-8">
+                        <a href="#service" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">서비스</a>
+                        <a href="#features" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">특징</a>
+                        <a href="#howto" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">이용방법</a>
+                        <a href="#pricing" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">광고요금</a>
+                        <a href="#contact" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">문의하기</a>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <button class="hidden md:inline-flex gradient-bg text-white font-medium rounded-full px-6 py-2 text-sm transition-all hover:shadow-lg hover:shadow-blue-500/30 mr-3">
+                        <span class="mr-2"><i class="fas fa-ad"></i></span>광고주 로그인
+                    </button>
+                    <button class="hidden md:inline-flex bg-white text-blue-600 font-medium rounded-full px-6 py-2 text-sm transition-all hover:shadow-lg hover:shadow-blue-500/30">
+                        <span class="mr-2"><i class="fas fa-motorcycle"></i></span>라이더 로그인
+                    </button>
+                    <button id="menuButton" class="md:hidden text-white focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 모바일 메뉴 -->
+        <div id="mobileMenu" class="mobile-menu transform -translate-y-full md:hidden glass-dark absolute w-full">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#service" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">서비스</a>
+                <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">특징</a>
+                <a href="#howto" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">이용방법</a>
+                <a href="#pricing" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">광고요금</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">문의하기</a>
+                <div class="pt-4 pb-3 border-t border-gray-700">
+                    <button class="w-full text-left block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 mb-2">
+                        <span class="mr-2"><i class="fas fa-ad"></i></span>광고주 로그인
+                    </button>
+                    <button class="w-full text-left block px-3 py-2 rounded-md text-base font-medium text-blue-600 bg-white">
+                        <span class="mr-2"><i class="fas fa-motorcycle"></i></span>라이더 로그인
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 히어로 섹션 -->
+    <section class="relative pt-20 overflow-hidden bg-gradient-to-b from-gray-900 to-indigo-900 text-white">
+        <div class="hero-blob"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-6" data-aos="fade-right" data-aos-duration="1000">
+                    <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
+                        <span class="inline-block text-transparent gradient-text font-poppins mb-2">다른 차원의</span>
+                        <span class="block">이동하는 광고 플랫폼</span>
+                    </h1>
+                    <p class="mt-6 max-w-md text-xl text-gray-300 leading-relaxed">
+                        배달 오토바이를 활용한 혁신적인 이동형 광고 플랫폼, 광탄사와 함께 당신의 비즈니스 가치를 높이세요.
+                    </p>
+                    <div class="mt-10 flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
+                        <a href="#service" class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-medium rounded-full text-white gradient-bg hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300">
+                            <span class="mr-2"><i class="fas fa-rocket"></i></span>
+                            서비스 알아보기
+                        </a>
+                        <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-medium rounded-full text-blue-500 bg-white hover:bg-gray-50 hover:shadow-lg hover:shadow-white/20 transition-all duration-300">
+                            <span class="mr-2"><i class="fas fa-comments"></i></span>
+                            문의하기
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:col-span-6 relative" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="animate-float relative z-10">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-green-400 rounded-xl transform rotate-6 blur opacity-20"></div>
+                        <img src="/api/placeholder/600/400" alt="배달 오토바이 광고 예시" class="relative z-10 rounded-xl shadow-2xl clipped-image">
+                    </div>
+                    
+                    <!-- 플로팅 엘리먼트 -->
+                    <div class="absolute top-20 -right-10 glass rounded-xl p-4 shadow-lg animate-float" style="animation-delay: 1s;">
+                        <div class="flex items-center">
+                            <div class="h-10 w-10 rounded-full bg-blue-500 flex items-center justify-center text-white">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-gray-800">실시간 노출량</p>
+                                <p class="text-lg font-bold text-gray-900">3,250+</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute bottom-20 -left-10 glass rounded-xl p-4 shadow-lg animate-float" style="animation-delay: 1.5s;">
+                        <div class="flex items-center">
+                            <div class="h-10 w-10 rounded-full bg-green-500 flex items-center justify-center text-white">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-gray-800">운행 지역</p>
+                                <p class="text-lg font-bold text-gray-900">강남구</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 웨이브 디바이더 -->
+        <div class="absolute bottom-0 left-0 right-0">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="w-full">
+                <path fill="#F8FAFC" fill-opacity="1" d="M0,160L48,149.3C96,139,192,117,288,117.3C384,117,480,139,576,149.3C672,160,768,160,864,138.7C960,117,1056,75,1152,64C1248,53,1344,75,1392,85.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- 통계 섹션 -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-xl gradient-border card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex flex-col items-center">
+                        <div class="h-16 w-16 rounded-full gradient-bg flex items-center justify-center mb-4">
+                            <i class="fas fa-motorcycle text-3xl text-white"></i>
+                        </div>
+                        <div class="text-4xl font-bold gradient-text">3,000+</div>
+                        <div class="mt-2 text-gray-600 text-center">활동 라이더</div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-xl gradient-border card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex flex-col items-center">
+                        <div class="h-16 w-16 rounded-full gradient-bg flex items-center justify-center mb-4">
+                            <i class="fas fa-store text-3xl text-white"></i>
+                        </div>
+                        <div class="text-4xl font-bold gradient-text">500+</div>
+                        <div class="mt-2 text-gray-600 text-center">광고주</div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-xl gradient-border card-hover" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex flex-col items-center">
+                        <div class="h-16 w-16 rounded-full gradient-bg flex items-center justify-center mb-4">
+                            <i class="fas fa-eye text-3xl text-white"></i>
+                        </div>
+                        <div class="text-4xl font-bold gradient-text">50,000+</div>
+                        <div class="mt-2 text-gray-600 text-center">일 평균 노출 횟수</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 서비스 소개 섹션 -->
+    <section id="service" class="py-24 bg-gradient-to-b from-white to-gray-100 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-base font-semibold gradient-text uppercase tracking-wide" data-aos="fade-up">서비스 소개</h2>
+                <p class="mt-2 text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl" data-aos="fade-up" data-aos-delay="100">
+                    도시를 누비는 모바일 광고
+                </p>
+                <p class="mt-5 max-w-3xl mx-auto text-xl text-gray-500" data-aos="fade-up" data-aos-delay="200">
+                    광탄사는 배달 오토바이의 이동성을 활용한 혁신적인 광고 플랫폼입니다. GPS 기반 타겟팅과 데이터 분석으로 효과적인 지역 마케팅을 제공합니다.
+                </p>
+            </div>
+
+            <div class="mt-20">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="relative feature-card bg-white p-8 rounded-xl shadow-md" data-aos="fade-right" data-aos-delay="100">
+                        <div class="absolute -top-6 -left-6 h-16 w-16 rounded-full gradient-bg flex items-center justify-center text-white text-2xl shadow-lg">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="mt-4 ml-6">
+                            <h3 class="text-xl font-bold text-gray-900">지역 타겟팅</h3>
+                            <p class="mt-4 text-gray-600 leading-relaxed">
+                                특정 지역에서만 광고가 노출되도록 설정할 수 있어 타겟 고객에게 효과적으로 도달합니다. 동네별, 상권별로 세분화된 타겟팅으로 광고 효율을 높입니다.
+                            </p>
+                            <div class="mt-4 flex items-center text-blue-600">
+                                <span class="text-sm font-medium">자세히 보기</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative feature-card bg-white p-8 rounded-xl shadow-md" data-aos="fade-left" data-aos-delay="200">
+                        <div class="absolute -top-6 -left-6 h-16 w-16 rounded-full gradient-bg flex items-center justify-center text-white text-2xl shadow-lg">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="mt-4 ml-6">
+                            <h3 class="text-xl font-bold text-gray-900">데이터 분석</h3>
+                            <p class="mt-4 text-gray-600 leading-relaxed">
+                                실시간 노출 데이터와 효과 분석 리포트를 제공하여 광고 효율성을 극대화합니다. 방문 고객수, 재방문율 등 다양한 분석 지표를 제공합니다.
+                            </p>
+                            <div class="mt-4 flex items-center text-blue-600">
+                                <span class="text-sm font-medium">자세히 보기</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative feature-card bg-white p-8 rounded-xl shadow-md" data-aos="fade-right" data-aos-delay="300">
+                        <div class="absolute -top-6 -left-6 h-16 w-16 rounded-full gradient-bg flex items-center justify-center text-white text-2xl shadow-lg">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="mt-4 ml-6">
+                            <h3 class="text-xl font-bold text-gray-900">유동인구 타겟팅</h3>
+                            <p class="mt-4 text-gray-600 leading-relaxed">
+                                유동인구가 많은 시간대와 장소에 맞춰 광고를 송출하여 효과를 극대화합니다. 배달 오토바이의 이동 경로를 최적화하여 더 많은 잠재 고객에게 노출됩니다.
+                            </p>
+                            <div class="mt-4 flex items-center text-blue-600">
+                                <span class="text-sm font-medium">자세히 보기</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative feature-card bg-white p-8 rounded-xl shadow-md" data-aos="fade-left" data-aos-delay="400">
+                        <div class="absolute -top-6 -left-6 h-16 w-16 rounded-full gradient-bg flex items-center justify-center text-white text-2xl shadow-lg">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="mt-4 ml-6">
+                            <h3 class="text-xl font-bold text-gray-900">저비용 고효율</h3>
+                            <p class="mt-4 text-gray-600 leading-relaxed">
+                                기존 옥외 광고 대비 저렴한 비용으로 효과적인 지역 마케팅이 가능합니다. 실시간 노출 데이터를 확인하며 ROI를 극대화할 수 있습니다.
+                            </p>
+                            <div class="mt-4 flex items-center text-blue-600">
+                                <span class="text-sm font-medium">자세히 보기</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 특징 섹션 -->
+    <section id="features" class="py-24 bg-gray-900 text-white relative overflow-hidden">
+        <!-- 배경 그래픽 요소 -->
+        <div class="absolute top-0 right-0 w-1/2 h-full opacity-10">
+            <svg width="100%" height="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                <g fill="none" stroke="white" stroke-width="2">
+                    <circle cx="200" cy="200" r="50" />
+                    <circle cx="200" cy="200" r="100" />
+                    <circle cx="200" cy="200" r="150" />
+                    <line x1="0" y1="200" x2="400" y2="200" />
+                    <line x1="200" y1="0" x2="200" y2="400" />
+                </g>
+            </svg>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center">
+                <h2 class="text-base font-semibold gradient-text uppercase tracking-wide" data-aos="fade-up">특징</h2>
+                <p class="mt-2 text-4xl
